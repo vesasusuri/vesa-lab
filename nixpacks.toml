@@ -3,11 +3,9 @@
 providers = ["php"]
 
 [phases.setup]
-nixpkgsArchive = "e24b4c09e963677b1beea49d411cd315a024ad3a"
 nixPkgs = [
   "(php84.withExtensions (pe: pe.enabled ++ [pe.all.pdo_mysql]))",
   "nginx",
-  "libmysqlclient",
   "php84Packages.composer",
 ]
 aptPkgs = ["nodejs", "npm"]
