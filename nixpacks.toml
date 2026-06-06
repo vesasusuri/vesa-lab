@@ -1,9 +1,16 @@
-# PHP provider already installs Node.js + npm for package.json (see nixpacks PhpProvider).
-# Do NOT also list "node" — that duplicates nodejs/npm in nix-env and causes derivation conflicts.
+# PHP provider auto-adds nodejs + npm-9_x from the nix-npm-overlay, which conflicts
+# (two npm derivations writing docs/lib/index.js). Use apt for Node/npm instead.
 providers = ["php"]
 
-[variables]
-NIXPACKS_NODE_VERSION = "18"
+[phases.setup]
+nixpkgsArchive = "e24b4c09e963677b1beea49d411cd315a024ad3a"
+nixPkgs = [
+  "(php84.withExtensions (pe: pe.enabled ++ [pe.all.pdo_mysql]))",
+  "nginx",
+  "libmysqlclient",
+  "php84Packages.composer",
+]
+aptPkgs = ["nodejs", "npm"]
 
 [phases.install]
 cmds = [
