@@ -1,12 +1,22 @@
-providers = ["php", "node"]
+# PHP provider already installs Node.js + npm for package.json (see nixpacks PhpProvider).
+# Do NOT also list "node" — that duplicates nodejs/npm in nix-env and causes derivation conflicts.
+providers = ["php"]
+
+[variables]
+NIXPACKS_NODE_VERSION = "18"
 
 [phases.install]
 cmds = [
+  "bash scripts/nixpacks-build-debug.sh",
   "composer install --no-dev --optimize-autoloader",
   "npm ci",
-  "npm run build",
-  "npm prune --omit=dev",
   "chmod -R ug+rwx storage bootstrap/cache"
+]
+
+[phases.build]
+cmds = [
+  "npm run build",
+  "npm prune --omit=dev"
 ]
 
 [start]
