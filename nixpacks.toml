@@ -1,9 +1,9 @@
-# PHP provider auto-adds nodejs + npm-9_x from the nix-npm-overlay, which conflicts
-# (two npm derivations writing docs/lib/index.js). Use apt for Node/npm instead.
-providers = ["php"]
+providers = []
 
 [phases.setup]
 nixPkgs = [
+  "(php84.withExtensions (pe: pe.enabled ++ [pe.all.pdo_mysql]))",
+  "php84Packages.composer",
   "nginx",
   "tesseract",
   "poppler_utils",
