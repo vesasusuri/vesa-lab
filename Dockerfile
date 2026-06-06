@@ -22,6 +22,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Skip puppeteer Chromium download (not needed at build time)
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+# Give Node enough heap for the production webpack build
+ENV NODE_OPTIONS=--max-old-space-size=2048
+
 WORKDIR /app
 
 COPY . .
