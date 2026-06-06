@@ -1,0 +1,130 @@
+.pricing-plans {
+    padding: .15rem 0 14rem;
+}
+
+.pricing-plans__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.15rem;
+}
+
+.pricing-card {
+    border: 1px solid #e7dfd4;
+    border-radius: 20px;
+    background: #fff;
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(242, 188, 27, 0.18);
+    border-color: #fdd535;
+}
+
+.pricing-card--featured {
+    border-color: #f2bc1b;
+    background: #fffdf6;
+}
+
+.pricing-card--featured:hover {
+    box-shadow: 0 16px 40px rgba(242, 188, 27, 0.28);
+    border-color: #f2bc1b;
+}
+
+.pricing-card__badge {
+    position: absolute;
+    top: -18px;
+    right: 24px;
+    background: #fff3cd;
+    color: #c58a00;
+    border: 1px solid #f2d27a;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: none;
+}
+
+.pricing-card h3 {
+    margin: .85rem 0 .35rem;
+    font-size: 1.24rem;
+}
+
+.pricing-card__price {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pricing-card__price small {
+    margin-left: .3rem;
+    font-size: .86rem;
+    font-weight: 500;
+    color: #5c6270;
+}
+
+.pricing-card__summary {
+    margin: .7rem 0 1rem;
+    color: #5c6270;
+    min-height: 3rem;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: .5rem;
+}
+
+.pricing-card li {
+    color: #2c313d;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.pricing-card li::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f2bc1b;
+    position: absolute;
+    left: 0;
+    top: .45rem;
+}
+
+.pricing-card__cta {
+    margin-top: auto;
+    padding-top: 1.1rem;
+    text-decoration: none;
+    color: #111;
+    font-weight: 700;
+    border: 1px solid #d9dde5;
+    border-radius: 999px;
+    padding: .7rem 1rem;
+    text-align: center;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.pricing-card__cta:hover {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+@media (max-width: 1020px) {
+    .pricing-plans__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card__summary {
+        min-height: 0;
+    }
+}

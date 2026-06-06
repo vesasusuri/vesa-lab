@@ -1,0 +1,155 @@
+.skills {
+  --resume-surface: #ffffff;
+  --resume-border: #e7dfd4;
+  --resume-text: #111;
+  --resume-text-muted: #777;
+  --resume-yellow: #f5c040;
+  --resume-yellow-light: #fff3cd;
+  --resume-yellow-border: #f2d27a;
+  --resume-btn: #1a1a2e;
+  --resume-radius-lg: 16px;
+  --resume-radius-md: 12px;
+
+  background: var(--resume-surface);
+  border: 1px solid var(--resume-border);
+  border-radius: var(--resume-radius-lg);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--resume-border);
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--resume-yellow-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--resume-text);
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--resume-text);
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitle {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--resume-text-muted);
+    margin: 0;
+  }
+
+  &__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 2rem;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--resume-yellow-light);
+    color: var(--resume-text);
+    border: 1px solid var(--resume-yellow-border);
+    border-radius: 999px;
+    padding: 6px 12px 6px 14px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--resume-text-muted);
+      display: flex;
+      align-items: center;
+      padding: 0;
+      border-radius: 4px;
+      transition: color 0.15s;
+
+      &:hover {
+        color: var(--resume-text);
+      }
+    }
+  }
+
+  &__input-wrap {
+    display: flex;
+    align-items: stretch;
+    gap: 0.625rem;
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--resume-border);
+      border-radius: var(--resume-radius-md);
+      font-size: 0.9375rem;
+      color: var(--resume-text);
+      background: #fff;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+
+      &::placeholder {
+        color: #a1a1aa;
+      }
+
+      &:focus {
+        border-color: var(--resume-yellow);
+      }
+    }
+  }
+
+  &__add-btn {
+    width: 44px;
+    height: auto;
+    min-height: 44px;
+    border-radius: var(--resume-radius-md);
+    background: var(--resume-btn);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 0.88;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .skills {
+    &__header {
+      padding: 1rem 1.25rem;
+    }
+
+    &__body {
+      padding: 1.25rem;
+    }
+  }
+}

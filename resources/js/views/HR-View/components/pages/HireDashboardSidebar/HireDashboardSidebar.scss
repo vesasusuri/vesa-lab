@@ -1,0 +1,243 @@
+
+.hire-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #fafaf8;
+}
+
+.hire-layout-content {
+  margin-left: 260px;
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+}
+
+.hire-sidebar-overlay {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 150;
+  }
+}
+
+.hire-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e7dfd4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 160;
+
+  @media (max-width: 768px) {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+
+    &.open {
+      transform: translateX(0);
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.hire-sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7a746d;
+  padding: 4px;
+  margin-left: auto;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.hire-sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hire-sidebar-brand {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .hire-sidebar-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .hire-sidebar-app {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111111;
+      letter-spacing: 0.05em;
+    }
+
+    .hire-sidebar-company {
+      font-size: 12px;
+      color: #7a746d;
+      font-weight: 500;
+    }
+  }
+}
+
+.hire-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hire-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: none;
+  background: none;
+  color: #7a746d;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+
+  &:hover:not(.disabled) {
+    background: #f2efea;
+    color: #111111;
+  }
+
+  &.active {
+    background: #f2efea;
+    color: #111111;
+    font-weight: 600;
+
+    .hire-nav-icon { color: #111111; }
+  }
+
+  &.disabled {
+    cursor: default;
+    &:hover { background: none; color: #7a746d; }
+  }
+
+  .hire-nav-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .hire-nav-label { flex: 1; }
+
+  .hire-nav-badge {
+    background: #fdd535;
+    color: #111111;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+
+.hire-sidebar-divider {
+  height: 1px;
+  background: #e7dfd4;
+  margin: 4px 0;
+}
+
+.hire-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hire-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fafaf8;
+  border: 1px solid #e7dfd4;
+
+  .hire-sidebar-avatar {
+    width: 36px;
+    height: 36px;
+    background: #fdd535;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111111;
+    flex-shrink: 0;
+  }
+
+  .hire-sidebar-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+
+    .hire-sidebar-user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111111;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hire-sidebar-user-role {
+      font-size: 12px;
+      color: #7a746d;
+    }
+  }
+}
+
+.hire-sidebar-signout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  background: none;
+  color: #7a746d;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  width: 100%;
+  font-family: inherit;
+
+  &:hover {
+    background: #f2efea;
+    color: #111111;
+  }
+}

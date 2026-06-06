@@ -1,0 +1,65 @@
+.interview-meeting {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__status,
+  &__error {
+    padding: 24px;
+    text-align: center;
+    color: #5c5650;
+  }
+
+  &__error button {
+    margin-top: 12px;
+    padding: 8px 16px;
+    border: 1px solid #e7dfd4;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  &__eyebrow {
+    display: block;
+    color: #fdd535;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  &__header h2 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  &__header p {
+    margin: 4px 0 0;
+    color: #7a746d;
+  }
+
+  &__back {
+    padding: 8px 14px;
+    border: 1px solid #e7dfd4;
+    border-radius: 999px;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  &__frame {
+    height: min(72vh, 720px);
+    border: 1px solid #e7dfd4;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #111;
+  }
+}

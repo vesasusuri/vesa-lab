@@ -1,0 +1,150 @@
+.resume-templates {
+  --resume-border: #e7dfd4;
+  --resume-text: #111;
+  --resume-text-muted: #777;
+  --resume-yellow: #f5c040;
+  --resume-yellow-light: #fff3cd;
+  --resume-btn: #1a1a2e;
+
+  background: #fff;
+  border: 1px solid var(--resume-border);
+  border-radius: 16px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1.125rem 1.25rem;
+    border-bottom: 1px solid var(--resume-border);
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--resume-yellow-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+    color: var(--resume-text);
+  }
+
+  &__subtitle {
+    font-size: 0.8125rem;
+    color: var(--resume-text-muted);
+    margin: 0;
+  }
+
+  &__body {
+    padding: 1.25rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    text-align: left;
+    padding: 0.75rem;
+    border: 1px solid var(--resume-border);
+    border-radius: 12px;
+    background: #fafaf8;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.15s, background 0.15s;
+
+    &:hover:not(:disabled) {
+      border-color: var(--resume-yellow);
+    }
+
+    &--active {
+      border-color: var(--resume-yellow);
+      background: var(--resume-yellow-light);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__card-name {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--resume-text);
+    margin-bottom: 0.2rem;
+  }
+
+  &__card-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--resume-text-muted);
+    line-height: 1.35;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+
+    &--outline {
+      background: #fff;
+      border: 1px solid var(--resume-border);
+      color: var(--resume-text);
+
+      &:hover:not(:disabled) {
+        border-color: var(--resume-yellow);
+      }
+    }
+
+    &--primary {
+      background: var(--resume-btn);
+      color: #fff;
+
+      &:hover:not(:disabled) {
+        opacity: 0.9;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &__message {
+    margin: 0.75rem 0 0;
+    font-size: 0.8125rem;
+    color: var(--resume-text-muted);
+  }
+}

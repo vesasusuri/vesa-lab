@@ -1,0 +1,174 @@
+.about-overview {
+    padding: 4rem 0 3rem;
+}
+
+.about-overview__intro {
+    max-width: 760px;
+    margin-bottom: 2.25rem;
+}
+
+.about-overview__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: .6rem;
+    color: #fdd535;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.about-overview__intro h2 {
+    margin: 0 0 .8rem;
+    color: #000000;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+}
+
+.about-overview__intro p {
+    margin: 0;
+    max-width: 66ch;
+    color: #6e7690;
+    line-height: 1.75;
+}
+
+.about-overview__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.about-overview__panel {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 2px solid #f2d252;
+}
+
+.about-overview__panel::before {
+    display: none;
+}
+
+.about-overview__panel h3 {
+    margin: 0 0 0.5rem;
+    color: #000000;
+    font-size: 1.2rem;
+    font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+}
+
+.about-overview__panel p {
+    margin: 0;
+    color: #6e7690;
+    line-height: 1.7;
+}
+
+.about-overview__steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.4rem;
+}
+
+.about-overview__step {
+    position: relative;
+    padding: 0.1rem 0 0.25rem;
+    border-top: 1px solid #e6eaf2;
+}
+
+.about-overview__step::after {
+    display: none;
+}
+
+.about-overview__step-badge {
+    display: inline-block;
+    margin: 0.9rem 0 0.75rem;
+    color: #9aa3b9;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.about-overview__step h3 {
+    margin: 0 0 0.55rem;
+    color: #1a2452;
+    font-size: 1.08rem;
+    line-height: 1.35;
+    font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+}
+
+.about-overview__step p {
+    margin: 0;
+    color: #6e7690;
+    line-height: 1.7;
+}
+
+.about-overview__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e6eaf2;
+}
+
+.about-overview__stat {
+    padding: 0;
+    text-align: left;
+}
+
+.about-overview__stat strong {
+    display: block;
+    color: #f0bd0b;
+    font-size: clamp(1.4rem, 2.1vw, 1.7rem);
+    margin-bottom: 0.2rem;
+    font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+}
+
+.about-overview__stat {
+    color: #6e7690;
+}
+
+@media (max-width: 1020px) {
+    .about-overview__grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .about-overview__steps {
+        grid-template-columns: 1fr;
+    }
+
+    .about-overview__stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.1rem 1.5rem;
+    }
+
+    .about-overview__stat {
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-overview {
+        padding: 3.2rem 0 2.4rem;
+    }
+
+    .about-overview__stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .about-overview__steps {
+        gap: 1.1rem;
+    }
+
+    .about-overview__intro {
+        margin-bottom: 1.2rem;
+    }
+}

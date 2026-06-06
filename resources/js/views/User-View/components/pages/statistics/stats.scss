@@ -1,0 +1,80 @@
+.stats {
+    width: 100%;
+    padding: 0 0 56px;
+}
+
+.stats__shade {
+    width: 100%;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.stats__overlay {
+    width: 100%;
+    min-height: 340px;
+    background: linear-gradient(rgba(253, 213, 53, 0.76), rgba(253, 213, 53, 0.76));
+}
+
+.stats__row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 340px;
+    align-items: center;
+    gap: 24px;
+    padding: 56px 40px;
+}
+
+.box {
+    text-align: center;
+    color: #ffffff;
+}
+
+.num {
+    margin: 0 0 10px;
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.txt {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 900px) {
+    .stats__overlay {
+        min-height: 300px;
+    }
+
+    .stats__row {
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 300px;
+        padding: 44px 28px;
+    }
+}
+
+@media (max-width: 520px) {
+    .stats {
+        padding: 0 0 40px;
+    }
+
+    .stats__row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: 0;
+        padding: 36px 20px;
+    }
+
+    .num {
+        font-size: 44px;
+    }
+
+    .txt {
+        font-size: 15px;
+    }
+}

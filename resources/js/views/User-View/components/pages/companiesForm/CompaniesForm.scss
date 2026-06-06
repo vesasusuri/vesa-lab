@@ -1,0 +1,181 @@
+.company-review-form-section {
+  margin: 0 0 max(4%, 36px);
+}
+
+.company-review-card {
+  padding: 20px 22px;
+  border: 1px solid #e7dfd4;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(17, 20, 26, 0.05);
+}
+
+.company-review-card-head {
+  h2 {
+    margin: 0 0 0.45rem;
+    color: #11141a;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    line-height: 1.1;
+  }
+
+  p {
+    margin: 0;
+    color: #5c6270;
+    font-size: 0.94rem;
+    line-height: 1.62;
+  }
+}
+
+.company-review-eyebrow {
+  margin: 0 0 0.45rem;
+  color: #f1ce40;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.company-review-form {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 1rem;
+}
+
+.company-review-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.company-review-field {
+  display: block;
+
+  &.error .company-review-field-box {
+    border-color: #d59a1d;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #11141a;
+    font: inherit;
+
+    &::placeholder {
+      color: #9aa1af;
+    }
+  }
+
+  textarea {
+    min-height: 92px;
+    resize: vertical;
+  }
+}
+
+.company-review-field-label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #2c313d;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.company-review-field-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid #e1e5ec;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: 0.2s ease;
+
+  &:focus-within {
+    border-color: #f2bc1b;
+    box-shadow: 0 0 0 4px rgba(242, 188, 27, 0.14);
+  }
+
+  &.textarea-box {
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+.company-review-field-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #8d94a3;
+}
+
+.company-review-field-error {
+  display: block;
+  min-height: 18px;
+  padding: 0.25rem 0.25rem 0;
+  color: #c58a00;
+  font-size: 0.82rem;
+}
+
+.company-review-form-actions {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.company-review-btn {
+  min-height: 44px;
+  padding: 0 1.4rem;
+  border: 1px solid #11141a;
+  border-radius: 999px;
+  background: #11141a;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 10px 24px rgba(17, 20, 26, 0.16);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(17, 20, 26, 0.22);
+  }
+}
+
+.company-review-feedback {
+  min-height: 1.2rem;
+  color: #6d7c2a;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .company-review-card {
+    padding: 18px 16px;
+  }
+
+  .company-review-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-review-eyebrow,
+  .company-review-btn {
+    font-size: 0.74rem;
+  }
+}

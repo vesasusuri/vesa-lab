@@ -1,0 +1,20 @@
+/node_modules
+/vendor
+/.env
+/.env.backup
+/.phpunit.result.cache
+
+# Auth UI structures
+/resources/views/auth/login.blade.php
+/resources/views/auth/signup.blade.php
+/resources/js/views/User-View/pages/Login/
+/resources/js/views/User-View/pages/Signup/
+/resources/js/views/User-View/components/shared/Login/
+/resources/js/views/User-View/components/shared/Signup/
+
+# Logs and compiled assets (do not commit)
+/storage/logs/
+/public/storage
+/public/js/app.js
+/public/mix-manifest.json
+/tests

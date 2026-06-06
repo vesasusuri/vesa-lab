@@ -1,0 +1,211 @@
+.companies-section {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 140px 20px 56px;
+    background: #fff;
+    font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+}
+
+.companies-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 24px;
+    margin-bottom: 28px;
+}
+
+.companies-section-eyebrow {
+    margin: 0 0 8px;
+    color: #f1ce40;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.companies-section-title {
+    margin: 0;
+    color: #111;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.08;
+}
+
+.companies-section-description {
+    max-width: 680px;
+    margin: 12px 0 0;
+    color: #6b6b6b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.companies-section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px 14px 24px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+}
+
+.companies-section-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.companies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.company-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 100%;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid #e8e8e5;
+    border-radius: 16px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.company-card:hover {
+    border-color: transparent;
+    box-shadow: 0 10px 28px rgba(17, 24, 39, 0.08);
+    transform: translateY(-2px);
+}
+
+.company-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.company-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #ededed;
+}
+
+.company-logo {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+}
+
+.company-industry {
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #fff8d6;
+    color: #111;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.company-card-body h3 {
+    margin: 0 0 8px;
+    color: #111;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.company-card-body p {
+    margin: 0;
+    color: #706f6c;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.company-meta {
+    display: grid;
+    gap: 10px;
+    color: #111;
+}
+
+.company-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a4a46;
+}
+
+.company-meta span svg {
+    color: #fdd535;
+}
+
+.company-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #ededed;
+}
+
+.company-open-roles {
+    color: #111;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.company-card-footer a {
+    color: #111;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.company-card-footer a:hover {
+    color: #f1ce40;
+}
+
+@media (max-width: 992px) {
+    .companies-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .companies-section {
+        padding: 110px 16px 40px;
+    }
+
+    .companies-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+    .companies-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .company-card {
+        padding: 18px;
+    }
+
+    .company-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

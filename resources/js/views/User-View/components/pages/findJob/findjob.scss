@@ -1,0 +1,88 @@
+.blur-circle {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: #fdd535;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+}
+
+.blur-circle.left {
+    left: -120px;
+    top: 270px;
+}
+
+.blur-circle.right {
+    right: -80px;
+    top: 80px;
+}
+
+.jobs-hero {
+    position: relative;
+    overflow: visible;
+    padding-top: 140px;
+    padding-bottom: 80px;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.jobs-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.jobs-hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 16px;
+}
+
+.jobs-hero-content h1 span {
+    color: #fdd535;
+}
+
+.jobs-hero-content p {
+    font-size: 16px;
+    color: #6b6b6b;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.jobs-hero-search-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.jobs-search-box {
+    background: #fff;
+    border-radius: 40px;
+    padding: 18px 24px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.jobs-search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+}
+
+.jobs-count-box {
+    background: #000;
+    color: #fff;
+    border-radius: 30px;
+    padding: 18px 24px;
+    font-weight: 600;
+    white-space: nowrap;
+}

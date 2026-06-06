@@ -1,0 +1,239 @@
+.resume-ai {
+  --resume-surface: #ffffff;
+  --resume-border: #e7dfd4;
+  --resume-text: #111;
+  --resume-text-muted: #777;
+  --resume-yellow: #fdd535;
+  --resume-yellow-light: #fff3cd;
+  --resume-yellow-dark: #fdd535;
+
+  background: var(--resume-surface);
+  border: 1px solid var(--resume-border);
+  border-radius: 16px;
+  padding: 1.125rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &--loading {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--resume-yellow-light);
+    color: #555;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &--error {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #fef3f2;
+    border-color: #fecdca;
+    color: #b42318;
+    font-size: 0.875rem;
+
+    p {
+      margin: 0;
+      line-height: 1.45;
+    }
+  }
+
+  &__sparkle {
+    color: var(--resume-yellow);
+    flex-shrink: 0;
+    animation: resume-ai-pulse 1.2s ease-in-out infinite;
+  }
+
+  &__hero {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__score-main {
+    padding-bottom: 0.25rem;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #888;
+    margin-bottom: 0.35rem;
+  }
+
+  &__score-value {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    margin-bottom: 0.75rem;
+
+    strong {
+      font-size: 2.25rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--resume-text);
+    }
+
+    span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--resume-text-muted);
+    }
+  }
+
+  &__tier-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 0.35rem;
+  }
+
+  &__tier-segment {
+    height: 6px;
+    background: #ece8e0;
+    border-radius: 999px;
+    transition: background 0.3s ease;
+
+    &--filled {
+      background: linear-gradient(90deg, var(--resume-yellow), var(--resume-yellow-dark));
+    }
+  }
+
+  &__tier-labels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+
+    span {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #888;
+      text-align: center;
+    }
+  }
+
+  &__match-block {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--resume-border);
+  }
+
+  &__job-title {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--resume-text);
+    line-height: 1.35;
+
+    span {
+      font-weight: 500;
+      color: var(--resume-text-muted);
+    }
+  }
+
+  &__progress {
+    height: 10px;
+    background: #ece8e0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 0.35rem;
+  }
+
+  &__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--resume-yellow), var(--resume-yellow-dark));
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+
+  &__match-value {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--resume-text);
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__card {
+    border: 1px solid var(--resume-border);
+    border-radius: 14px;
+    padding: 0.75rem 0.875rem;
+    background: #fafaf8;
+
+    h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--resume-text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1rem;
+      color: #555;
+      font-size: 0.75rem;
+      line-height: 1.45;
+    }
+
+    li + li {
+      margin-top: 0.2rem;
+    }
+  }
+
+  &__card--missing {
+    background: #fff8f0;
+  }
+
+  &__card--skills {
+    background: #f8fbff;
+  }
+
+  &__card--strengths {
+    background: #f0fdf4;
+  }
+
+  &__card--suggestions {
+    background: #fafaf8;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    span {
+      background: #fff;
+      border: 1px solid var(--resume-border);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: #444;
+    }
+  }
+}
+
+@keyframes resume-ai-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}

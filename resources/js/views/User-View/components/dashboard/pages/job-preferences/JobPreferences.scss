@@ -1,0 +1,144 @@
+.job-preferences {
+    background: #fff;
+    border: 1px solid #e7dfd4;
+    border-radius: 20px;
+    overflow: hidden;
+  
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #e7dfd4;
+    }
+  
+    &__icon {
+      width: 42px;
+      height: 42px;
+      background: #fff3cd;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+  
+    &__title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #111;
+      margin: 0 0 2px;
+    }
+  
+    &__subtitle {
+      font-size: 13px;
+      color: #777;
+      margin: 0;
+    }
+  
+    &__body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    &__badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    &__badge {
+      display: flex;
+      align-items: center;
+      background: #fff3cd;
+      color: #c58a00;
+      border: 1px solid #f2d27a;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+  
+      &--outline {
+        background: #fff;
+        border: 1px solid #ddd;
+        color: #777;
+      }
+    }
+  
+    &__grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+  
+    &__field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 calc(50% - 1.25rem);
+      min-width: 200px;
+  
+      label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+  
+      input,
+      select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e7dfd4;
+        border-radius: 12px;
+        font-size: 15px;
+        color: #111;
+        background: #fff;
+        outline: none;
+        font-family: inherit;
+        transition: border-color 0.15s;
+  
+        &:focus {
+          border-color: #f5c040;
+        }
+      }
+  
+      select {
+        cursor: pointer;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .job-preferences {
+      &__header {
+        padding: 1rem 1.25rem;
+      }
+  
+      &__body {
+        padding: 1.25rem;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .job-preferences {
+      &__header {
+        padding: 1rem;
+      }
+
+      &__body {
+        padding: 1rem;
+      }
+
+      &__field {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+    }
+  }
