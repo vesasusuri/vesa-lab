@@ -1,8 +1,5 @@
 providers = ["php", "node"]
 
-[phases.setup]
-nixPkgs = ["php84", "composer", "nodejs", "npm"]
-
 [phases.install]
 cmds = [
   "composer install --no-dev --optimize-autoloader",
