@@ -116,19 +116,39 @@ rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf 2>/dev/nul
 # Validate nginx config before starting
 nginx -t
 
-# Start php-fpm as a daemon
-php-fpm -D
+# Supervisord manages both processes: if php-fpm crashes, it restarts automatically.
+# Without a supervisor, a dead php-fpm leaves nginx running (PID 1 stays alive)
+# so Railway never detects the failure and 502s persist indefinitely.
+cat > /etc/supervisor/conf.d/app.conf << 'SUPEOF'
+[supervisord]
+nodaemon=true
+logfile=/dev/null
+logfile_maxbytes=0
+loglevel=info
+pidfile=/tmp/supervisord.pid
 
-# Wait until php-fpm is accepting connections on 9000
-echo "==> waiting for php-fpm..."
-timeout 30 bash -c \
-  'until (echo > /dev/tcp/127.0.0.1/9000) 2>/dev/null; do sleep 0.2; done' \
-  && echo "==> php-fpm ready" \
-  || { echo "ERROR: php-fpm did not start within 30s"; exit 1; }
+[program:php-fpm]
+command=/usr/local/sbin/php-fpm -F
+autostart=true
+autorestart=true
+startretries=10
+priority=10
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
 
-# #region agent log
-_debug_log "php-fpm ready" "{\"port\":\"${PORT:-8080}\",\"phpFpmListen\":\"127.0.0.1:9000\"}" "H2"
-# #endregion
+[program:nginx]
+; 3s head-start lets php-fpm workers initialize before nginx accepts requests
+command=/bin/bash -c "sleep 3 && exec /usr/sbin/nginx -g 'daemon off;'"
+autostart=true
+autorestart=true
+startretries=10
+priority=20
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+SUPEOF
 
-# Start nginx in the foreground (PID 1)
-exec nginx -g "daemon off;"
+exec supervisord -c /etc/supervisor/conf.d/app.conf

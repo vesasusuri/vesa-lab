@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr \
     poppler-utils \
     nginx \
+    supervisor \
     && docker-php-ext-install pdo_mysql mbstring xml zip bcmath intl fileinfo opcache \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
