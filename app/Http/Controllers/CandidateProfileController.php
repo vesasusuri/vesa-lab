@@ -30,7 +30,7 @@ class CandidateProfileController extends Controller
 
     public function update(UpdateCandidateProfileRequest $request): JsonResponse
     {
-        $user = $request->user();
+        $user = $request->user(); 
         $this->ensureCandidate($user);
 
         $profile = $this->cvProfileService->updateDashboard($user, $request->validated());
