@@ -53,20 +53,27 @@ fi
 
 php artisan migrate --force
 
-# Cache config for faster boot (soft-fail so a bad config doesn't block startup)
-php artisan config:cache || echo "Warning: config:cache failed, running uncached"
-
 # Create public/storage symlink (gitignored; needed for file serving)
 php artisan storage:link --quiet 2>/dev/null || true
 
-# Override php-fpm pool: use ondemand pm to conserve memory, pass env vars through
+# Override php-fpm pool settings
 cat > /usr/local/etc/php-fpm.d/zz-railway.conf << 'EOF'
 [www]
+; Pass all Railway env vars through to PHP workers
 clear_env = no
-pm = ondemand
+; Explicit TCP listen (matches nginx fastcgi_pass)
+listen = 127.0.0.1:9000
+; dynamic pm: keeps warm workers ready, avoids cold-spawn 502 on first request
+pm = dynamic
 pm.max_children = 5
-pm.process_idle_timeout = 10s
-pm.max_requests = 500
+pm.start_servers = 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+; Give each worker enough memory for Laravel + dependencies
+php_admin_value[memory_limit] = 256M
+; Log PHP errors to stderr (visible in Railway logs)
+php_admin_flag[log_errors] = on
+php_admin_value[error_log] = /dev/stderr
 EOF
 
 # Build nginx config from template (substitutes only ${PORT})

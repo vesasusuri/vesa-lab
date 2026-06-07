@@ -4,6 +4,9 @@ server {
     root /app/public;
     index index.php;
 
+    access_log /dev/stdout;
+    error_log /dev/stderr warn;
+
     charset utf-8;
     client_max_body_size 64M;
 
