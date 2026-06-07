@@ -8,6 +8,9 @@ if [ -z "${APP_KEY:-}" ]; then
   exit 1
 fi
 
+# Ensure Laravel's required storage directories exist (Docker may not copy empty dirs)
+mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache/data
+
 # php-fpm runs as www-data; make storage writable by all
 chmod -R a+rwx storage bootstrap/cache
 
