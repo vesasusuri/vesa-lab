@@ -8,8 +8,14 @@ if [ -z "${APP_KEY:-}" ]; then
   exit 1
 fi
 
-# Ensure Laravel's required storage directories exist (Docker may not copy empty dirs)
-mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache/data
+# Ensure all required storage directories exist
+mkdir -p \
+  storage/framework/sessions \
+  storage/framework/views \
+  storage/framework/cache/data \
+  storage/app/public \
+  storage/logs \
+  bootstrap/cache
 
 # php-fpm runs as www-data; make storage writable by all
 chmod -R a+rwx storage bootstrap/cache
@@ -47,16 +53,40 @@ fi
 
 php artisan migrate --force
 
-# Pass Railway env vars through to php-fpm worker processes
-echo "clear_env = no" >> /usr/local/etc/php-fpm.d/www.conf
+# Cache config for faster boot (soft-fail so a bad config doesn't block startup)
+php artisan config:cache || echo "Warning: config:cache failed, running uncached"
+
+# Create public/storage symlink (gitignored; needed for file serving)
+php artisan storage:link --quiet 2>/dev/null || true
+
+# Override php-fpm pool: use ondemand pm to conserve memory, pass env vars through
+cat > /usr/local/etc/php-fpm.d/zz-railway.conf << 'EOF'
+[www]
+clear_env = no
+pm = ondemand
+pm.max_children = 5
+pm.process_idle_timeout = 10s
+pm.max_requests = 500
+EOF
 
 # Build nginx config from template (substitutes only ${PORT})
 export PORT="${PORT:-8080}"
+echo "==> nginx will listen on port $PORT"
 envsubst '${PORT}' < /app/docker/nginx.conf.template > /etc/nginx/conf.d/app.conf
 rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf 2>/dev/null || true
 
-# Start php-fpm in the background
+# Validate nginx config before starting
+nginx -t
+
+# Start php-fpm as a daemon
 php-fpm -D
 
-# Start nginx in the foreground as PID 1
+# Wait until php-fpm is accepting connections on 9000
+echo "==> waiting for php-fpm..."
+timeout 30 bash -c \
+  'until (echo > /dev/tcp/127.0.0.1/9000) 2>/dev/null; do sleep 0.2; done' \
+  && echo "==> php-fpm ready" \
+  || { echo "ERROR: php-fpm did not start within 30s"; exit 1; }
+
+# Start nginx in the foreground (PID 1)
 exec nginx -g "daemon off;"
