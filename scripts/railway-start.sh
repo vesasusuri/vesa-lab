@@ -8,7 +8,8 @@ if [ -z "${APP_KEY:-}" ]; then
   exit 1
 fi
 
-chmod -R ug+rwx storage bootstrap/cache
+# php-fpm runs as www-data; make storage writable by all
+chmod -R a+rwx storage bootstrap/cache
 
 # Railway MySQL plugin exposes MYSQL*; Laravel reads DB_* / DB_URL.
 if [ -n "${MYSQL_URL:-}" ] && [ -z "${DB_URL:-}" ]; then
@@ -43,4 +44,16 @@ fi
 
 php artisan migrate --force
 
-exec php artisan serve --host=0.0.0.0 --port="${PORT:-8000}"
+# Pass Railway env vars through to php-fpm worker processes
+echo "clear_env = no" >> /usr/local/etc/php-fpm.d/www.conf
+
+# Build nginx config from template (substitutes only ${PORT})
+export PORT="${PORT:-8080}"
+envsubst '${PORT}' < /app/docker/nginx.conf.template > /etc/nginx/conf.d/app.conf
+rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf 2>/dev/null || true
+
+# Start php-fpm in the background
+php-fpm -D
+
+# Start nginx in the foreground as PID 1
+exec nginx -g "daemon off;"
