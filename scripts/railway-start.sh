@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# #region agent log
+_debug_log() {
+  local payload
+  payload=$(printf '{"sessionId":"7301c9","timestamp":%s,"location":"railway-start.sh","message":"%s","data":%s,"hypothesisId":"%s","runId":"%s"}' \
+    "$(date +%s000)" "$1" "$2" "$3" "${DEBUG_RUN_ID:-pre-fix}")
+  echo "$payload" >> "${DEBUG_LOG_PATH:-/Users/vesas/Desktop/vesa-lab/.cursor/debug-7301c9.log}" 2>/dev/null || true
+  echo "$payload" >&2
+}
+# #endregion
+
 if [ -z "${APP_KEY:-}" ]; then
   echo "ERROR: APP_KEY is not set."
   echo "Generate one locally with: php artisan key:generate --show"
@@ -51,7 +61,23 @@ elif [ "${DB_CONNECTION}" = "sqlite" ]; then
   touch "$db_path"
 fi
 
+# #region agent log
+_config_cache="false"
+_cached_db_host="null"
+if [ -f bootstrap/cache/config.php ]; then
+  _config_cache="true"
+  _cached_db_host="\"$(php -r '$c=@include "bootstrap/cache/config.php"; echo is_array($c) ? ($c["database"]["connections"]["mysql"]["host"] ?? "missing") : "unreadable";' 2>/dev/null || echo parse-error)\""
+fi
+_debug_log "pre-migrate env and config cache" \
+  "{\"configCached\":${_config_cache},\"cachedDbHost\":${_cached_db_host},\"DB_CONNECTION\":\"${DB_CONNECTION:-}\",\"DB_HOST\":\"${DB_HOST:-}\",\"MYSQLHOST\":\"${MYSQLHOST:-}\",\"hasDbUrl\":$([ -n \"${DB_URL:-}\" ] && echo true || echo false)}" \
+  "H1"
+# #endregion
+
 php artisan migrate --force
+
+# #region agent log
+_debug_log "migrate succeeded" "{}" "H4"
+# #endregion
 
 # Create public/storage symlink (gitignored; needed for file serving)
 php artisan storage:link --quiet 2>/dev/null || true
@@ -94,6 +120,10 @@ timeout 30 bash -c \
   'until (echo > /dev/tcp/127.0.0.1/9000) 2>/dev/null; do sleep 0.2; done' \
   && echo "==> php-fpm ready" \
   || { echo "ERROR: php-fpm did not start within 30s"; exit 1; }
+
+# #region agent log
+_debug_log "php-fpm ready" "{\"port\":\"${PORT:-8080}\",\"phpFpmListen\":\"127.0.0.1:9000\"}" "H2"
+# #endregion
 
 # Start nginx in the foreground (PID 1)
 exec nginx -g "daemon off;"

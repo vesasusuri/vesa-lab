@@ -1,0 +1,4 @@
+{"sessionId":"7301c9","timestamp":1780861193150,"location":"public\/index.php","message":"request entry","data":{"uri":"\/api\/notifications\/unread-count","configCached":true},"hypothesisId":"H1","runId":"pre-fix"}
+{"sessionId":"7301c9","timestamp":1780861193153,"location":"public\/index.php","message":"cached db config snapshot","data":{"cachedDbHost":"${MYSQLHOST}","envDbHost":null},"hypothesisId":"H1","runId":"pre-fix"}
+{"sessionId":"7301c9","timestamp":1780861193180,"location":"public\/index.php","message":"request entry","data":{"uri":"\/api\/notifications\/unread-count","configCached":true},"hypothesisId":"H1","runId":"pre-fix"}
+{"sessionId":"7301c9","timestamp":1780861193181,"location":"public\/index.php","message":"cached db config snapshot","data":{"cachedDbHost":"${MYSQLHOST}","envDbHost":null},"hypothesisId":"H1","runId":"pre-fix"}
