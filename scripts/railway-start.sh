@@ -2,11 +2,12 @@
 set -euo pipefail
 
 # #region agent log
+DEBUG_LOG_PATH="${DEBUG_LOG_PATH:-storage/logs/debug-7301c9.log}"
 _debug_log() {
   local payload
   payload=$(printf '{"sessionId":"7301c9","timestamp":%s,"location":"railway-start.sh","message":"%s","data":%s,"hypothesisId":"%s","runId":"%s"}' \
     "$(date +%s000)" "$1" "$2" "$3" "${DEBUG_RUN_ID:-pre-fix}")
-  echo "$payload" >> "${DEBUG_LOG_PATH:-/Users/vesas/Desktop/vesa-lab/.cursor/debug-7301c9.log}" 2>/dev/null || true
+  echo "$payload" >> "$DEBUG_LOG_PATH" 2>/dev/null || true
   echo "$payload" >&2
 }
 # #endregion
@@ -60,6 +61,10 @@ elif [ "${DB_CONNECTION}" = "sqlite" ]; then
   mkdir -p "$(dirname "$db_path")"
   touch "$db_path"
 fi
+
+# Stale config cache (e.g. baked with Railway ${MYSQLHOST} placeholders) ignores runtime env.
+php artisan config:clear --quiet 2>/dev/null || true
+rm -f bootstrap/cache/config.php 2>/dev/null || true
 
 # #region agent log
 _config_cache="false"

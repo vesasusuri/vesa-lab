@@ -7,7 +7,7 @@ define('LARAVEL_START', microtime(true));
 
 // #region agent log
 (function () {
-    $logPath = getenv('DEBUG_LOG_PATH') ?: '/Users/vesas/Desktop/vesa-lab/.cursor/debug-7301c9.log';
+    $logPath = getenv('DEBUG_LOG_PATH') ?: (__DIR__.'/../storage/logs/debug-7301c9.log');
     $configCached = file_exists(__DIR__.'/../bootstrap/cache/config.php');
     $payload = json_encode([
         'sessionId' => '7301c9',
@@ -39,7 +39,7 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 
 // #region agent log
 (function () {
-    $logPath = getenv('DEBUG_LOG_PATH') ?: '/Users/vesas/Desktop/vesa-lab/.cursor/debug-7301c9.log';
+    $logPath = getenv('DEBUG_LOG_PATH') ?: (__DIR__.'/../storage/logs/debug-7301c9.log');
     $configPath = __DIR__.'/../bootstrap/cache/config.php';
     $cachedDbHost = null;
     if (is_readable($configPath)) {
